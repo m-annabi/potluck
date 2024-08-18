@@ -1,0 +1,74 @@
+pipeline {
+    agent any
+
+    environment {
+        REGISTRY = "localhost:5000"
+        APP_NAME = "potluck"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/m-annabi/potluck.git'
+            }
+        }
+
+        stage('Build Angular App') {
+            steps {
+                dir('frontend') {
+                    script {
+                        sh 'npm install'
+                        sh 'npm run build --prod'
+                    }
+                }
+            }
+        }
+
+        stage('Build Spring Boot App') {
+            steps {
+                dir('backend') {
+                    script {
+                        sh './mvnw clean package -DskipTests'
+                    }
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh "docker build -t ${REGISTRY}/${APP_NAME}:latest ."
+                }
+            }
+        }
+
+        stage('Push Docker Image to Local Registry') {
+            steps {
+                script {
+                    sh "docker push ${REGISTRY}/${APP_NAME}:latest"
+                }
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    sh 'kubectl apply -f k8s/deployment.yaml'
+                    sh 'kubectl apply -f k8s/service.yaml'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            sh 'docker rmi ${REGISTRY}/${APP_NAME}:latest'
+        }
+        success {
+            echo 'Pipeline executed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}

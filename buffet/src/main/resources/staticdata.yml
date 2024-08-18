@@ -1,0 +1,30 @@
+staticdata:
+  test: test
+  items:
+    -
+      name: Quiche
+      category: MAIN_COURSE
+    -
+      name: Pizza
+      category: MAIN_COURSE
+    -
+      name: Salade
+      category: MAIN_COURSE
+    -
+      name: Coca Cola
+      category: BREWERY
+    -
+      name: Wine
+      category: BREWERY
+    -
+      name: Sparkling Water
+      category: BREWERY
+    -
+      name: Still Water
+      category: BREWERY
+    -
+      name: Tira Misu
+      category: DESERT
+    -
+      name: Panna Cotta
+      category: DESERT

@@ -1,0 +1,14 @@
+use potluck
+db.createCollection('users')
+
+// creating admin
+db.users.insert({"firstName":"Olivier","lastName":"Bax de Keating","login":"obaxde","email":"olivier.bax.de.keating@gmail.com","password":"$2a$10$bVuMmwWj5xUhesTXGQBan.kTTgXRr19zdnEZ/Z3iic3CuZpRF5ZSi","mobileNumber":"+41 78 909 27 16","personalAddress":{"country":"Suisse","state":"Vaud","city":"Arzier","street":"Chemin des noisetiers","streetNumber":"4","zipCode":"1273"},"roles":[{"role":"ROLE_ADMIN"},{"role":"ROLE_REGULAR"}],"_class":"com.bax.potluck.entity.User"});
+
+// creating regular user
+db.users.insert({"firstName":"Marc","lastName":"Florimond","login":"florima","email":"elendil.psychoªhotmail.fr","password":"$2a$10$bVuMmwWj5xUhesTXGQBan.kTTgXRr19zdnEZ/Z3iic3CuZpRF5ZSi","mobileNumber":"+33 6 65 65 40 09","personalAddress":{"country":"France","city":"Saint Cannat","street":"Chemin des Revouirolles","streetNumber":"38","zipCode":"13760"},"roles":[{"role":"ROLE_REGULAR"}],"_class":"com.bax.potluck.entity.User"})
+
+db.users.insert({"firstName":"Akan","lastName":"Akan","login":"akan","email":"akan@gmail.com","password":"$2a$10$bVuMmwWj5xUhesTXGQBan.kTTgXRr19zdnEZ/Z3iic3CuZpRF5ZSi","mobileNumber":"+33 6 65 65 40 09","personalAddress":{"country":"France","city":"Saint Cannat","street":"Chemin des Revouirolles","streetNumber":"38","zipCode":"13760"},"roles":[{"role":"ROLE_REGULAR"}],"_class":"com.bax.potluck.entity.User"})
+
+// creating items
+db.createCollection('item')
+db.item.insert([{"name":"Pizza","category":"MAIN_COURSE","_class":"com.bax.potluck.entity.Item"},{"name":"Quiche","category":"MAIN_COURSE","_class":"com.bax.potluck.entity.Item"},{"name":"Poulet grillé","category":"MAIN_COURSE","_class":"com.bax.potluck.entity.Item"},{"name":"Coca Cola","category":"BREWERY","_class":"com.bax.potluck.entity.Item"},{"name":"Vin","category":"BREWERY","_class":"com.bax.potluck.entity.Item"},{"name":"Gateau au chocolat","category":"DESERT","_class":"com.bax.potluck.entity.Item"},{"name":"Fruits","category":"DESERT","_class":"com.bax.potluck.entity.Item"}])
